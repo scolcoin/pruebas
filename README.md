@@ -1,0 +1,2 @@
+# scolcoin
+Social project
