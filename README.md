@@ -62,11 +62,16 @@ If you prefer to compile scolcoind, here are some pointers for Ubuntu:
     $ sudo apt-get install build-essential libssl-dev libdb-dev libdb++-dev libboost-all-dev git libssl1.0.0-dbg
     $ sudo apt-get install libdb-dev libdb++-dev libboost-all-dev libminiupnpc-dev libminiupnpc-dev libevent-dev libcrypto++-dev libgmp3-dev
     $ sudo su - scolcoin
-    $ cd ~/src && git clone https://github.com/scolcoin/scolcoin.git
+    $ cd ~/src 
+    $ mkdir scolcoin
+    $ cd scolcoin
+    $ wget http://scolcoin.com/descargas/scolcoin-source.tar.gz
+    $ tar -xzvf scolcoin-source.tar.gz
     $ cd scolcoin/src
     $ make -f makefile.unix RELEASE=1
     $ strip scolcoind
     $ cp -a scolcoind ~/bin
+    $ cd ~/bin
     
     ### Step 3. Configure and start icolcoind
 
@@ -75,8 +80,35 @@ username and password for `scolcoind`. We will then start `scolcoind` and
 wait for it to complete downloading the blockchain.
 
     $ mkdir ~/.scolcoin
- 
-start `scolcoind`:
+    $ nano ~/.scolcoin/scolcoin.conf
+Use user and password
+rpcuser=rpc_scolcoin
+rpcpassword=69c863e3356d3dae95df454a1
+rpcallowip=127.0.0.1
+# Listening mode
+listen=1
+server=1
+txindex=1
+daemon=1
+# Use as many addnode=
+addnode=5.189.144.197
+addnode=80.241.214.59
+addnode= 173.249.23.32
+
+Ctrl + x
+Y (Yes)
+(Enter)
+
+------------------------
+
+start:
 
     $ scolcoind
 
+stop:
+
+    $ scolcoind stop
+    
+help:
+
+    $ scolcoind help 
