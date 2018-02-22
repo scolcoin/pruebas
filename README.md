@@ -2,6 +2,9 @@
 Instructions install Deamon
 ----------------------------
 
+    $ sudo apt-get update 
+    $ sudo apt-get upgrade
+
 ### Step 1. Create a user for running scolcoind
 This step is optional, but for better security and resource separation I
 suggest you create a separate user just for running `scolcoind` .
