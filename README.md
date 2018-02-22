@@ -30,3 +30,29 @@ in this manner will have their corresponding issue labeled 'stagnant'.
 Issues with no commits will be given a similar warning, and closed after
 15 days from their last activity. Issues closed in this manner will be 
 labeled 'stale'.
+
+Update your Ubuntu machine.
+
+sudo apt-get update
+sudo apt-get upgrade
+
+Install the dependencies to compile from source code.
+
+sudo apt-get install build-essential libssl-dev libdb-dev libdb++-dev libboost-all-dev git libssl1.0.0-dbg
+sudo apt-get install libdb-dev libdb++-dev libboost-all-dev libminiupnpc-dev libminiupnpc-dev libevent-dev libcrypto++-dev libgmp3-dev
+
+Create a directory for the source code.
+
+mkdir source_code
+cd source_code
+
+git clone https://github.com/scolcoin/scolcoin.git
+
+Go to the src directory of your source code.
+
+cd scolcoin
+cd src
+
+Execute the following command to compile the daemon.
+
+make -f makefile.unix RELEASE=1
