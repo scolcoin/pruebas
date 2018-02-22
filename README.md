@@ -31,28 +31,52 @@ Issues with no commits will be given a similar warning, and closed after
 15 days from their last activity. Issues closed in this manner will be 
 labeled 'stale'.
 
-Update your Ubuntu machine.
+Instructions install Deamon
+----------------------------
 
-sudo apt-get update
-sudo apt-get upgrade
+### Step 1. Create a user for running scolcoind
+This step is optional, but for better security and resource separation I
+suggest you create a separate user just for running `scolcoind` .
+We will also use the `~/bin` directory to keep locally installed files
+(others might want to use `/usr/local/bin` instead). We will download source
+code files to the `~/src` directory.
 
-Install the dependencies to compile from source code.
+    $ sudo adduser scolcoin --disabled-password
+    $ sudo apt-get install git
+    $ sudo su - scolcoin
+    $ mkdir ~/bin ~/src
+    $ echo $PATH
 
-sudo apt-get install build-essential libssl-dev libdb-dev libdb++-dev libboost-all-dev git libssl1.0.0-dbg
-sudo apt-get install libdb-dev libdb++-dev libboost-all-dev libminiupnpc-dev libminiupnpc-dev libevent-dev libcrypto++-dev libgmp3-dev
+If you don't see `/home/scolcoin/bin` in the output, you should add this line
+to your `.bashrc`, `.profile`, or `.bash_profile`, then logout and relogin:
 
-Create a directory for the source code.
+    PATH="$HOME/bin:$PATH"
+    $ exit
 
-mkdir source_code
-cd source_code
+### Step 2. Download scolcoind
 
-git clone https://github.com/scolcoin/scolcoin.git
+We currently recommend scolcoind stable.
 
-Go to the src directory of your source code.
+If you prefer to compile scolcoind, here are some pointers for Ubuntu:
 
-cd scolcoin
-cd src
+    $ sudo apt-get install build-essential libssl-dev libdb-dev libdb++-dev libboost-all-dev git libssl1.0.0-dbg
+    $ sudo apt-get install libdb-dev libdb++-dev libboost-all-dev libminiupnpc-dev libminiupnpc-dev libevent-dev libcrypto++-dev libgmp3-dev
+    $ sudo su - scolcoin
+    $ cd ~/src && git clone https://github.com/scolcoin/scolcoin.git
+    $ cd scolcoin/src
+    $ make -f makefile.unix RELEASE=1
+    $ strip scolcoind
+    $ cp -a scolcoind ~/bin
+    
+    ### Step 3. Configure and start icolcoind
 
-Execute the following command to compile the daemon.
+In order to "talk" to `scolcoind`, we need to set up an RPC
+username and password for `scolcoind`. We will then start `scolcoind` and
+wait for it to complete downloading the blockchain.
 
-make -f makefile.unix RELEASE=1
+    $ mkdir ~/.scolcoin
+ 
+start `scolcoind`:
+
+    $ scolcoind
+
