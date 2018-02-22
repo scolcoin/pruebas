@@ -81,19 +81,19 @@ wait for it to complete downloading the blockchain.
 
     $ mkdir ~/.scolcoin
     $ nano ~/.scolcoin/scolcoin.conf
-Use user and password
-rpcuser=rpc_scolcoin
-rpcpassword=69c863e3356d3dae95df454a1
-rpcallowip=127.0.0.1
-# Listening mode
-listen=1
-server=1
-txindex=1
-daemon=1
-# Use as many addnode=
-addnode=5.189.144.197
-addnode=80.241.214.59
-addnode= 173.249.23.32
+     # Use user and password
+     rpcuser=rpc_scolcoin
+     rpcpassword=69c863e3356d3dae95df454a1
+     rpcallowip=127.0.0.1
+     # Listening mode
+     listen=1
+     server=1
+     txindex=1
+     daemon=1
+     # Use as many addnode=
+     addnode=5.189.144.197
+     addnode=80.241.214.59
+     addnode= 173.249.23.32
 
 Ctrl + x
 Y (Yes)
